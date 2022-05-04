@@ -5,10 +5,49 @@
     width: 210px;
     .author-list {
       padding: 15px;
-      background-color: aliceblue;
+      background-color: #ffc000;
     }
     .image-author {
       width: 210px;
+      border-radius: 5px;
     }
+  }
+}
+
+.author-detail {
+  width: 100%;
+  height: 100%;
+  background: #ffc000;
+  border-radius: 30px;
+  margin-top: 30px;
+  .author-item {
+    display: flex;
+    padding: 30px;
+    a {
+      padding-right: 30px;
+      .image-author {
+        width: 200px;
+        border-radius: 50%;
+      }
+      .image-icon {
+        display: flex;
+        justify-content: space-around;
+        .image-fb {
+          width: 50px;
+          height: 50px;
+          margin-top: 30px;
+        }
+      }
+    }
+    .author-list {
+      .item-p {
+        display: flex;
+        justify-content: center;
+        p {
+          margin: auto;
+        }
+      }
+    }
+
   }
 }

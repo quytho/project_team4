@@ -15,7 +15,7 @@ class AdminController < ApplicationController
   
   private 
     def dynamic_layout
-      if true
+      if current_user.is_admin?
         "admin"
       else
         "users"

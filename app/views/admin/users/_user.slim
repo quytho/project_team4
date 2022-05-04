@@ -1,0 +1,14 @@
+.user-item
+  .user-name 
+    = user.name
+  .cre
+    .user-detail
+      p.user-email 
+        = user.email
+      p.user-role 
+        = user.is_admin ? "Admin" : "User"
+    .user-button
+      = link_to "Details", admin_user_path(user.id), class: "detail"
+      = link_to "Edit", edit_admin_user_path(user.id), class: "edit"        
+      = link_to "Delete", admin_user_path(user.id), class: "delete",
+      method: :delete, data: {confirm: "Are You sure?"}

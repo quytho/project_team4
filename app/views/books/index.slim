@@ -1,12 +1,13 @@
 = render "form_search"
-h3
-  | Tong sach : 
-  = @books.length
-.book
-  - if @books.empty?
-    p.message
-      | Không có sách vào cả!!!
-  - else
-    = render @books
+section.courses.wrapper
+  .container
+    .courses-main
+      .courses-heading All Books
+      .courses-list
+        - if @books.empty?
+          p.message
+            | Không có sách nào cả!!!
+        - else
+          = render @books
 .center_pag
   = will_paginate @books

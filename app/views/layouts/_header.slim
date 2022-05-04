@@ -7,15 +7,15 @@ body
         ul.menu
           .menu-list
             li.menu-item
-              a.menu-link = link_to "Home", books_path
+              = link_to "Home", books_path, class: "menu-link"
             li.menu-item
-              a.menu-link = link_to "Blog", '#'
+              = link_to "Blog", '#', class: "menu-link"
             li.menu-item
-              a.menu-link = link_to "Author", authors_path
+              = link_to "Author", authors_path, class: "menu-link"
             li.menu-item
-              a.menu-link = link_to "About Us", '#'
+              = link_to "About Us", '#', class: "menu-link"
             li.menu-item
-              a.menu-link = link_to "Contact Us", '#'
+              = link_to "Contact Us", '#', class: "menu-link"
           - if logged_in?
             li.dropdown
               a.dropdown-toggle[href="#" data-toggle="dropdown"]

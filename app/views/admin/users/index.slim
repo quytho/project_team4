@@ -1,0 +1,16 @@
+.container-admin
+  .publisher-content
+    h2.pub-title
+      | Manage Users
+    .publisher-but
+      = render "add"
+      = render "export"
+    = render "search"
+    = render "head"
+    - if @users.length > 0
+      = render @users
+    - else
+      h2 
+        | Khong co ket qua nao!!!
+    .center_pag
+      = will_paginate @publishers

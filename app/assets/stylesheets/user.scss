@@ -1,0 +1,41 @@
+.user{
+  &-item{
+    display: flex;
+    gap: 0px 160px;
+    padding: 25px 75px;
+    color: black;
+    font-weight: 400;
+  }
+  &-head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 155px;
+  }
+  &-role{
+    width: 20px;
+  }
+  &-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 10px;
+  }
+  &-name{
+    width: 20px;
+    color: black;
+    font-weight: 500;
+  }
+  &-email{
+    width: 100px;
+  }
+  &-detail{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 0 135px;
+  }
+}
+input#user_is_admin {
+  height: 20px;
+}

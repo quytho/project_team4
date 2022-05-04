@@ -71,4 +71,20 @@ class User < ActiveRecord::Base
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
   end
+  scope :order_name, -> { order(is_admin: :DESC)}
+  scope :search_name, ->(name) { where("LOWER(name) LIKE ?", "%#{name}%") if name.present? }
+  scope :search_role, ->(is_admin) { where(is_admin: is_admin) if is_admin.present? }
+  scope :search, lambda { |params|
+    search_name(params[:name])
+    # .search_role(params[:is_admin])
+  }
+  def self.to_xls(options = {})
+    CSV.generate(options) do |csv|
+      csv << column_names
+      all.each do |student|
+        csv << student.attributes.values_at(*column_names)
+      end
+    end
+  end
+
 end

@@ -1,0 +1,25 @@
+.publisher-new
+  .publisher-back
+    = link_to image_tag("Back.png") + "Back", admin_users_path
+  h2
+    | Add User
+  .publisher-form
+    = form_for([:admin, @user]) do |form|
+      .publisher-form
+        .publisher-form-fieldname
+          = form.label :name
+          = form.text_field :name
+        .publisher-form-fieldname
+          = form.label :email
+          = form.text_field :email
+        .publisher-form-fieldname
+          = form.label :password
+          = form.text_field :password
+        .publisher-form-fieldname
+          = form.label :password_confirmation
+          = form.text_field :password_confirmation
+        .publisher-form-fieldname
+          = form.label :role
+          = form.check_box :is_admin
+        .book-submit
+          = form.submit "Add", class: "button--primary signin-btn publisher-btn"

@@ -1,27 +1,19 @@
-.admin-book
+.publisher-new
+  .publisher-back
+    = link_to image_tag("Back.png") + "Back", admin_books_path
   h2
-    | Update Book
-  .adminBook-form
+    | Edit Book
+  .publisher-form
     = form_for([:admin, @book]) do |form|
-      .book-form
-        .book-field
-          .book-form-name
-            = form.label :name
-          .book-form-fieldname
-            = form.text_field :name, value: @book.name
-        .book-field
-          .book-form-name
-            = form.label :amount
-          .book-form-fieldname
-            = form.text_field :amount, value: @book.amount
-        .book-field
-          .book-form-name
-            = form.label :price
-          .book-form-fieldname
-            = form.text_field :price, value: @book.price
-        .book-field
-          .book-form-name
-            = form.label :status
-          = form.check_box :status
+      .publisher-form
+        .publisher-form-fieldname
+          = form.label :name
+          = form.text_field :name, value: @book.name
+        .publisher-form-fieldname
+          = form.label :amount
+          = form.text_field :amount, value: @book.amount
+        .publisher-form-fieldname
+          = form.label :price
+          = form.text_field :price, value: @book.price
         .book-submit
-          = form.submit "Update", class: "book-update"
+          = form.submit "Update", class: "button--primary signin-btn publisher-btn"

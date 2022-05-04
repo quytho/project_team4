@@ -16,7 +16,8 @@ class Admin::BorrowRequetsController < AdminController
       redirect_to request.referrer
     end
   end
-  
+  def show
+  end
   private
 
     def book_params
@@ -25,9 +26,9 @@ class Admin::BorrowRequetsController < AdminController
     
     def get_borrow_request
       @borrow_requet = BorrowRequet.find_by_id(params[:id])
-      return if @borrow_requet
+      return if @borrow_requet.present?
       flash[:warning] = "That request could not be found"
       redirect_to admin_borrow_requets_path  
     end
-
+    
 end

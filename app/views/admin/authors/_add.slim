@@ -1,4 +1,4 @@
 .author-add
-  = link_to "Add Author", new_admin_author_path
-.author-add
-   = link_to "Export Author", admin_authors_path(format: "xls")
+  = link_to "Add Author", new_admin_author_path, class: "publisher-add"
+
+  = link_to "Export Author", admin_authors_path(format: "xls"), class: "publisher-add"

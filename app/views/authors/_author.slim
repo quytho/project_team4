@@ -1,11 +1,12 @@
 .author-border 
-    a = link_to 
-      img.image-author src=" https://i1.rgstatic.net/ii/profile.image/716475023233024-1547832365171_Q512/Michael-Harth.jpg"
-    .author-list
-      p.author
-        | - Author:
-        = author.name
-      p
-        | - Birth day: 10-01-1999
-      p
-        | - Books: Conan, Harry Pooter
+  a = link_to 
+    img.image-author src=" https://i1.rgstatic.net/ii/profile.image/716475023233024-1547832365171_Q512/Michael-Harth.jpg"
+  .author-list
+    p.author
+      | - Author:
+      = author.name
+    p
+      | - Birth day: 10-01-1999
+    p
+      | - Books: Conan, Harry Pooter
+    = link_to "Details", author , class: "details"

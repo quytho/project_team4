@@ -1,43 +1,29 @@
-.admin-book
+.publisher-new
+  .publisher-back
+    = link_to image_tag("Back.png") + "Back", admin_books_path
   h2
-    | Add Book
-  .adminBook-form
+    | New Book
+  .publisher-form
     = form_for([:admin, @book]) do |form|
-      = render "shared/error_messages", object: form.object
-      .book-form
-        .book-field
-          .book-form-name
-            = form.label :name
-          .book-form-fieldname
-            = form.text_field :name
-        .book-field
-          .book-form-name
-            = form.label :amount
-          .book-form-fieldname
-            = form.text_field :amount
-        .book-field
-          .book-form-name
-            = form.label :price
-          .book-form-fieldname
-            = form.text_field :price
-        .book-field
-          .book-form-name
-            = form.label :status
-          = form.check_box :status , checked: true
-        .book-field
-          .book-form-name
-            = form.label :author
+      .publisher-form
+        .publisher-form-fieldname
+          
+          = form.text_field :name, placeholder: "Name"
+        .publisher-form-fieldname
+          
+          = form.text_field :amount, placeholder: "Amount"
+        .publisher-form-fieldname
+
+          = form.text_field :price, placeholder: "Price"
+        .publisher-form-fieldname.publisher-nested
           = form.collection_select :author_id, Author.all, :id, :name, class: "select_pub",
             prompt: true, include_blank: "Select Author"
           = form.fields_for :author do |author|
-            = author.text_field :name, placeholder: "Author new"
-        .book-field
-          .book-form-name
-            = form.label :publisher
-          = form.collection_select :publisher_id, Publisher.all, :id, :name, class: "select_author",
-            prompt: true, include_blank: "Select Publisher"
-          = form.fields_for :publisher do |pub|
-            = pub.text_field :name, placeholder: "Publisher new"
+            = author.text_field :name, placeholder: "Author new", class: "new-author"
+        .publisher-form-fieldname.publisher-nested
+          = form.collection_select :publisher_id, Publisher.all, :id, :name, class: "select_pub",
+            prompt: true, include_blank: "Select Author"
+          = form.fields_for :author do |author|
+            = author.text_field :name, placeholder: "Publisher new", class: "new-author"
         .book-submit
-          = form.submit "Add Book", class: "book-update"
-          = link_to "Back", admin_books_path, class: "book-update"
+          = form.submit "Create", class: "button--primary signin-btn publisher-btn"

@@ -1,12 +1,12 @@
 .publisher-new
+  .publisher-back
+    = link_to image_tag("Back.png") + "Back", admin_publishers_path
   h2
     | Update Publisher
   .publisher-form
     = form_for([:admin, @publisher]) do |form|
       .publisher-form
-        .publisher-form-name
-          = form.label :name
         .publisher-form-fieldname
           = form.text_field :name, value: @publisher.name
         .publisher-submit
-          = form.submit "Update"
+          = form.submit "Update", class: "button--primary signin-btn publisher-btn"

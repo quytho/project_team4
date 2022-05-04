@@ -54,7 +54,7 @@ class Admin::AuthorsController < AdminController
 
     def get_authors
       @author = Author.find_by_id(params[:id])
-      return if @author
+      return if @author.present?
       flash[:warning] = "That author could not be found"
       redirect_to admin_authors_path 
     end

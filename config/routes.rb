@@ -9,12 +9,14 @@ Rails.application.routes.draw do
   resources :users
   resources :authors
   resources :books
+  resources :follows
   namespace :admin do
     resources :publishers
     resources :authors
     resources :categories
     resources :books
     resources :borrow_requets
+    resources :users
   end
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]

@@ -8,7 +8,7 @@ class Admin::BooksController < AdminController
   end
   
   def index
-    @books = Book.includes(:author).search(params)
+    @books = Book.includes(:author, :borrow_requets, :follows).search(params)
       .order_name
       .paginate(page: params[:page], per_page: 10)
       respond_to do |format|
@@ -60,9 +60,8 @@ class Admin::BooksController < AdminController
     
     def get_books
       @book = Book.find_by_id(params[:id])
-      return if @book
-      flash[:warning] = "That book could not be found"
-      render :index  
+      return if @book.present?
+      flash[:warning] = "That book could not be found" 
     end
 
 end

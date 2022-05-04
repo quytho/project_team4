@@ -6,7 +6,7 @@
       p.publisher-create 
         = publisher.created_at
       p.publisher-amount 
-        = publisher.name
+        = publisher.books.map(&:publisher_id).count
     .publisher-button
       = link_to "Edit", admin_publisher_path(publisher.id), class: "edit"        
       = link_to "Delete", admin_publisher_path(publisher.id), class: "delete",

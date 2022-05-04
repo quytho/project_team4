@@ -1,15 +1,30 @@
-.book-list
-  p.book-title
-    | Tên:  
-    = book.name
-  p.book-author
-    | Tác giả: 
-    = book.author.name
-  p.book-amount
-    | Sô lượng:
-    = book.amount
-  p.book-rate
-    | Đánh giá:
-    = book.rates.map(&:star).sum
-  = link_to "follow",'#', class: "follow"         
-  = link_to "Details", "#", class: "details"
+.courses-item
+  .courses-img
+    img alt="" src="https://images.unsplash.com/photo-1635977358539-acdac811214a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80" /
+  .courses-info
+    .courses-name
+      = book.name
+    .courses-author
+      span
+        | by 
+      = book.author.name
+    .courses-star
+      - (1..star(book)).each do |index|
+        = image_tag("star.png")
+  .courses-type
+    = star(book) > 3 ? "Top Rate" : "" 
+  .courses-but
+    - id_follow = (book.follows.find_by(book_id: book.id, user_id: current_user.id))
+    - if id_follow.present?
+      - show_unfollow = ""
+      - show_follow = "hidden"
+    - else
+      - show_unfollow = "hidden"
+      - show_follow = ""
+    = button_tag "Follow",
+        class: "courses-button follow-book #{show_follow}", id: "follow-#{book.id}", 
+          data: {book_id: book.id, user_id: current_user.id} 
+    = button_tag "Unfollow",
+        class: "courses-button unfollow-book #{show_unfollow}", id: "unfollow-#{book.id}", 
+          data: {id:id_follow , book_id: book.id, user_id: current_user.id} 
+    = link_to "Details", "#", class: "courses-button"

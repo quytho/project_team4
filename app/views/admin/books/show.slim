@@ -1,32 +1,26 @@
-.admin-book
+.publisher-new
+  .publisher-back
+    = link_to image_tag("Back.png") + "Back", admin_books_path
   h2
-    | Detail Book
-  .adminBook-form
+    | Details Book
+  .publisher-form
     = form_for([:admin, @book]) do |form|
-      .book-form
-        .book-field
-          .book-form-name
-            = form.label :name
-          = @book.name
-        .book-field
-          .book-form-name
-            = form.label :amount
-          =@book.amount
-        .book-field
-          .book-form-name
-            = form.label :price
-          = @book.price
-        .book-field
-          .book-form-name
-            = form.label :status
-          = @book.status
-        .book-field
-          .book-form-name
-            = form.label :Author
-          = @book.author.name
-        .book-field
-          .book-form-name
-            = form.label :Publisher
-          = @book.publisher.name
-        .book-submit
-    = link_to "Back", admin_books_path, class: "book-update"
+      .publisher-form
+        .publisher-form-fieldname
+          = form.label :name
+          = form.text_field :name, value: @book.name, :readonly => true
+        .publisher-form-fieldname
+          = form.label :amount
+          = form.text_field :name, value: @book.amount, :readonly => true
+        .publisher-form-fieldname
+          = form.label :price
+          = form.text_field :name, value: @book.price, :readonly => true
+        .publisher-form-fieldname
+          = form.label :publisher
+          = form.text_field :name, value: @book.author.name, :readonly => true
+        .publisher-form-fieldname
+          = form.label :Author
+          = form.text_field :name, value: @book.publisher.name, :readonly => true
+        .publisher-form-fieldname
+          = form.label :current_quantity
+          = form.text_field :name, value: current(@book)

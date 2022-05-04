@@ -1,0 +1,18 @@
+.publisher-new
+  .publisher-back
+    = link_to image_tag("Back.png") + "Back", admin_borrow_requets_path
+  h2
+    | Details Borrow request
+  .publisher-form
+    = form_for([:admin, @borrow_requet]) do |form|
+      .publisher-form
+        .publisher-form-fieldname
+          = form.label :User_name
+          = form.text_field :user_id,  value: @borrow_requet.user.name, :readonly => true
+        .publisher-form-fieldname
+          = form.label :Book_name
+          = form.text_field :book_id,  value: @borrow_requet.book.name, :readonly => true
+        .publisher-form-fieldname
+          = form.label :borrow_date
+          = form.text_field :borrow_date,  value: @borrow_requet.borrow_date, :readonly => true
+

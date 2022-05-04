@@ -27,17 +27,9 @@
 }
 
 .author-add {
-  background-color: #3155d7;
-  display: inline-block;
-  padding: 20px 15px;
-  border-radius: 5px;
-  margin: 20px 20px 0 0 ;
-  a{
-    color: #fff;
-    &:hover {
-      text-decoration: none;
-    }
-  }
+  display: flex;
+  gap: 0 15px;
+ 
 }
 .author {
   margin-top: 25px;
@@ -45,7 +37,7 @@
   justify-content:space-between;
   align-items:stretch;
   border-radius: 5px;
-  gap: 80px 30px;
+  gap: 80px 0px;
   .author-left{
     display: flex;
     justify-content: space-between;

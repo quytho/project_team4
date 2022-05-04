@@ -1,4 +1,4 @@
-= @authors.each do |author|
+- @authors.each do |author|
   .author
     .author-left
       .author-left-image
@@ -6,17 +6,14 @@
           img.image-author src=" https://i1.rgstatic.net/ii/profile.image/716475023233024-1547832365171_Q512/Michael-Harth.jpg"
       .author-left-p
         p
-          | Author:
           = author.name
         p
-          | Birth day: 10-01-1999
+          | 10-01-1999
         p
-          | Books: Conan, Harry Pooter
+          | Conan, Harry Pooter
     .author-right
-      p 
-        .buttun-add 
-          .edit = link_to "Edit", admin_author_path(author.id)
-      p 
-        .buttun-add 
-          .delete = link_to "Delete", admin_author_path(author.id),
-                    method: :delete, data: {confirm: "Delete author"}
+      .buttun-add 
+        .edit = link_to "Edit", admin_author_path(author.id)
+      .buttun-add 
+        .delete = link_to "Delete", admin_author_path(author.id),
+          method: :delete, data: {confirm: "Delete author"}

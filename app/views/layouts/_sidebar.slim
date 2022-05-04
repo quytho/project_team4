@@ -1,9 +1,11 @@
 .sidebar
   .dropdown
-    = link_to "Publisher", admin_publishers_path, class: "btn-side"  
+    = link_to "Publishers", admin_publishers_path, class: "btn-side"
+  .dropdown
+    = link_to "Users", admin_users_path, class: "btn-side"  
   .dropdown
     = link_to "Books", admin_books_path, class: "btn-side"
   .dropdown
-    = link_to "Authors", admin_publishers_path, class: "btn-side"
+    = link_to "Authors", admin_authors_path, class: "btn-side"
   .dropdown
     = link_to "Request Books", admin_borrow_requets_path, class: "btn-side"

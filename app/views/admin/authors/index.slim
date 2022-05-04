@@ -1,9 +1,11 @@
-- provide(:title, 'Author')
-.h1_title
-  h1
-    | Manage Author
-= render "search"
-= render "add"
-= render "authors"
-.center_pag
-  = will_paginate @authors
+.container-admin
+  .publisher-content
+    .h1_title
+      h1
+        | Manage Author
+    = render "search"
+    = render "add"
+    = render "head"
+    = render "authors"
+    .center_pag
+      = will_paginate @authors

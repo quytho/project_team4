@@ -10,8 +10,7 @@
       p.publisher-amount 
         = borrow_requet.status == 0 ? "Chua duyet" : "Da duyet"
     .publisher-button.book-button
-      = link_to "Details", "#", class: "detail" 
+      = link_to "Details", admin_borrow_requet_path(borrow_requet.id), class: "detail" 
       = button_tag "Accept", class: "edit edit_accept", data: {book_id: borrow_requet.id, status: "1"}  
-        / unless borrow_requet.status == 1 ? class: "edit edit_accept" : class: "edit edit_accept dis",
       = link_to "Reject", "#", class: "delete",
       method: :delete, data: {confirm: "Are You sure?"}

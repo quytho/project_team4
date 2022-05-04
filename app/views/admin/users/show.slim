@@ -1,0 +1,20 @@
+.publisher-new
+  .publisher-back
+    = link_to image_tag("Back.png") + "Back", admin_users_path
+  h2
+    | Detail User
+  .publisher-form
+    = form_for([:admin, @user]) do |form|
+      .publisher-form
+        .publisher-form-fieldname
+          = form.label :name
+          = form.text_field :name, value: @user.name, :readonly => true
+        .publisher-form-fieldname
+          = form.label :email
+          = form.text_field :name, value: @user.email, :readonly => true
+        .publisher-form-fieldname
+          = form.label :role
+          = form.text_field :name, value: @user.is_admin ? "Admin" : "User", :readonly => true
+        .publisher-form-fieldname
+          = form.label :activated_at
+          = form.text_field :name, value: @user.activated_at, :readonly => true
