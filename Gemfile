@@ -9,8 +9,8 @@ gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails'
 gem 'bootstrap-sass'
+gem 'coffee-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
@@ -18,14 +18,14 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem "slim-rails"
-gem "sprockets-rails"
-gem "turbo-rails"
-gem "will_paginate"
-gem 'bootstrap-will_paginate'
-gem 'turbolinks'
 gem 'bcrypt'
-gem 'rubocop', require: false
+gem 'bootstrap-will_paginate'
+gem 'rubocop'
+gem 'slim-rails'
+gem 'sprockets-rails'
+gem 'turbolinks'
+gem 'turbo-rails'
+gem 'will_paginate'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

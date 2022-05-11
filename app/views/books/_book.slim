@@ -27,4 +27,4 @@
     = button_tag "Unfollow",
         class: "courses-button unfollow-book #{show_unfollow}", id: "unfollow-#{book.id}", 
           data: {id:id_follow , book_id: book.id, user_id: current_user.id} 
-    = link_to "Details", "#", class: "courses-button"
+    = link_to "Details", book_path(book.id), class: "courses-button"
