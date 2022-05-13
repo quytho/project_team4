@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :users
   resources :authors
   resources :books
+  resources :borrow_requets
   resources :follows
   namespace :admin do
     resources :publishers

@@ -46,7 +46,7 @@ class Admin::AuthorsController < AdminController
     end
     redirect_to admin_authors_path
   end
-  
+
   private
     def user_params
       params.require(:author).permit(:name)

@@ -1,0 +1,29 @@
+- provide(:title, 'Request')
+.h1_title
+  h1
+    | Borrow Request
+= form_for(@borrow_requet) do |form|
+      .request-form
+        .request-form-iteam
+          .request-form-fieldname
+            = form.hidden_field :user_id, :value => current_user.id
+          .request-form-fieldname
+            = form.hidden_field :book_id, :value => @book.id
+        .request-form-iteam
+          .request-form-name
+            = form.label :Book
+          .request-form-fieldname
+            = form.text_field :name, :value => @book.name
+        .request-form-iteam
+          .request-form-name
+            = form.label :borrow
+          .request-form-fieldname
+            = form.text_field :borrow_date
+        .request-form-iteam
+          .request-form-name
+            = form.label :return
+          .request-form-fieldname
+            = form.text_field :return_date
+        .request-form-iteam
+          .request-submit
+            = form.submit "Create"
