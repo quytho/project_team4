@@ -1,0 +1,30 @@
+.request-form {
+  margin: 50px 250px;
+  border-radius: 5px;
+  border: 1px solid #133340;
+  background: #fff7df;
+  padding: 40px 30px;
+  .request-form-iteam {
+    margin-block-end: 15px;
+    .request-form-fieldname input{
+      width: 100%;
+      padding: 0.375rem 0.75rem;
+      font-size: 1.75rem;
+      line-height: 1.5;
+      color: #495057;
+      background-color: #fff;
+      background-clip: padding-box;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+    }
+    .request-submit input{
+      background: #ff8a00;
+      color: #fff;
+      padding: 8px 24px;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+  } 
+}

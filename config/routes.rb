@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   resources :books do
     resources :comments
   end
+  resources :books
+  resources :borrow_requets
   resources :follows
   namespace :admin do
     resources :publishers
