@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-  def index
-  end
+  def index; end
 
   def show
     @user = User.find(params[:id])
@@ -14,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate your account."
+      flash[:info] = 'Please check your email to activate your account.'
       redirect_to @user
     else
       render 'new'
@@ -22,8 +21,9 @@ class UsersController < ApplicationController
   end
 
   private
-    def user_params
-      params.require(:user).permit(:name, :email, :password,
-        :password_confirmation)
-    end
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password,
+                                 :password_confirmation)
+  end
 end

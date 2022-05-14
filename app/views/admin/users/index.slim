@@ -3,8 +3,9 @@
     h2.pub-title
       | Manage Users
     .publisher-but
-      = render "add"
-      = render "export"
+      #add-form
+        = link_to "Add User", new_admin_user_path, class: "publisher-add"
+      = link_to "Export", admin_users_path(format: "xls"), class: "publisher-add"
     = render "search"
     = render "head"
     - if @users.length > 0

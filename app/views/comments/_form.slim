@@ -1,0 +1,7 @@
+.form-comment
+  = form_with model: [ @book, @book.comments.build ] do |form|
+    .form-content
+      / = form.label :New_comments
+      = form.text_area :content
+      = form.hidden_field :user_id, value: current_user.id
+      = form.submit "comment", class: ""

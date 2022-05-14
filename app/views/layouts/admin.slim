@@ -14,9 +14,10 @@ head
     crossorigin="anonymous"
 body
   = render'layouts/header'
-  .container-admin
-    = render "layouts/sidebar"
-    .yield-content
-      = render "shared/notifi_messa"
-      = yield
+  .container-fluid
+    .container-admin
+      = render "layouts/sidebar"
+      .yield-content
+        = render "shared/notifi_messa"
+        = yield
   = render'layouts/footer'
