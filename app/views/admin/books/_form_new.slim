@@ -23,7 +23,7 @@
         .publisher-form-fieldname.publisher-nested
           = form.collection_select :publisher_id, Publisher.all, :id, :name, class: "select_pub",
             prompt: true, include_blank: "Select Author"
-          = form.fields_for :author do |author|
-            = author.text_field :name, placeholder: "Publisher new", class: "new-author"
+          = form.fields_for :publisher do |publisher|
+            = publisher.text_field :name,  placeholder: "Publisher new", class: "new-author"
         .book-submit
           = form.submit "Create", class: "button--primary signin-btn publisher-btn"

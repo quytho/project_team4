@@ -15,4 +15,11 @@
         .publisher-form-fieldname
           = form.label :borrow_date
           = form.text_field :borrow_date,  value: @borrow_requet.borrow_date, :readonly => true
-
+        .publisher-form-fieldname
+          = form.label :borrow_status 
+          = form.check_box :status_borrow, class: 'form-check-input', checked: false
+        .publisher-form-fieldname
+          = form.label :return_date
+          = form.text_field :return_date, id:"datePickerReturn1"
+        .book-submit
+          = form.submit "Update", class: "button--primary signin-btn publisher-btn edit-borrow"

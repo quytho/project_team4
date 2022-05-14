@@ -3,8 +3,9 @@
     h2.pub-title
       | Manage Publisher
     .publisher-but
-      = render "add"
-      = render "export"
+      #add-form
+        = link_to "Thêm Mới", new_admin_publisher_path, class: "publisher-add"
+      = link_to "Export", admin_publishers_path(format: "xls"), class: "publisher-add"
     = render "search"
     = render "head"
     - if @publishers.length > 0

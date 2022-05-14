@@ -1,49 +1,57 @@
-class Admin::CategoriesController < AdminController
-  before_action :get_category, except: [:index, :new, :create]
-  
-  def index
-    @category = Category.search(params).paginate(page: params[ :page], per_page: 3)
-  end
+module Admin
+  class CategoriesController < AdminController
+    before_action :find_category, except: %i[index new create]
 
-  def show
-  end
-
-  def new
-    @category = Category.new
-  end
-
-  def create
-    @category = Category.create(category_params)
-    if @category.save
-      redirect_to admin_categories_path 
-    else
-      render :new
+    def index
+      @category = Category.search(params).paginate(page: params[:page], per_page: 3)
     end
-  end
 
-  def edit
-  end
+    def show; end
 
-  def update
-    if @category.update(category_params)
+    def new
+      @category = Category.new
+    end
+
+    def create
+      @category = Category.create(category_params)
+      if @category.save
+        flash[:success] = " Category create Successfully"
+        redirect_to admin_categories_path
+      else
+        flash[:warning] = " Category create failed"
+        render :new
+      end
+    end
+
+    def edit; end
+
+    def update
+      if @category.update(category_params)
+        flash[:success] = " Category update Successfully"
+        redirect_to admin_categories_path
+      else
+        flash[:warning] = " Category update Failed"
+        render :edit
+      end
+    end
+
+    def destroy
+      @category.destroy
       redirect_to admin_categories_path
-    else
-      render :edit
     end
-  end
 
-  def destroy
-    @category.destroy
-    redirect_to admin_categories_path
-  end
+    private
 
-  private
     def category_params
       params.require(:category).permit(:name)
     end
 
-    def get_category
+    def find_category
       @category = Category.find_by(id: params[:id])
-      redirect_to admin_categories_path unless @category
+      return if @category.present?
+
+      flash[:warning] = "That category could not be found"
+      redirect_to admin_categories_path
     end
+  end
 end

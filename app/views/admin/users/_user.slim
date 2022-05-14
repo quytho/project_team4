@@ -10,5 +10,3 @@
     .user-button
       = link_to "Details", admin_user_path(user.id), class: "detail"
       = link_to "Edit", edit_admin_user_path(user.id), class: "edit"        
-      = link_to "Delete", admin_user_path(user.id), class: "delete",
-      method: :delete, data: {confirm: "Are You sure?"}
