@@ -1,23 +1,47 @@
-h1.book_title
-  | DETAILS BOOK
-.book_form
-  .book_details 
-    .book_details-list 
-      .img_detail_book
-          img src=" https://png.pngtree.com/element_our/20190529/ourlarge/pngtree-book-pencil-study-book-image_1216472.jpg"
-          p.book-title 
-            | Tên sách: 
-            = @books.name
-          p.book-author
-            | Tác giả: 
-            = @books.author.name
-          p.book-amount 
-            | Sô lượng:
-            = @books.amount
-          p.book-price 
-            | Giá :
-            = @books.price
-          p.book-publisher
-            | Nhà xuất bản: 
-            = @books.publisher.name
-    
+.book-detail
+  .book-detail_image 
+    img alt="" src="https://images.unsplash.com/photo-1635977358539-acdac811214a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80" /
+  .book-detail_info
+    p.book-detail_header 
+      = @book.name
+    .book-detail_rate
+      - if star(@book) > 0
+        .book-detail_star
+          - (1..star(@book)).each do |index|
+            = image_tag("star.png")
+      - else 
+        p
+          | Chưa có đánh giá
+    .book-detail_author
+      p
+        | Author : 
+      = @book.author.name
+    .book-detail_amount 
+      p
+        | Amount :
+      = @book.amount
+    .book-detail_price 
+      p  
+        | Price :
+      = @book.price
+    .book-detail_button
+      = button_tag "Borrow Request",class: "courses-button"
+      - id_follow = (@book.follows.find_by(book_id: @book.id, user_id: current_user.id))
+      - if id_follow.present?
+        - show_unfollow = ""
+        - show_follow = "hidden"
+      - else
+        - show_unfollow = "hidden"
+        - show_follow = ""
+      = button_tag "Follow",
+                              class: "courses-button follow-book #{show_follow}", id: "follow-#{@book.id}", 
+                              data: {book_id: @book.id, user_id: current_user.id} 
+      = button_tag "Unfollow",
+                              class: "courses-button unfollow-book #{show_unfollow}", id: "unfollow-#{@book.id}", 
+                              data: {id:id_follow , book_id: @book.id, user_id: current_user.id} 
+      = button_tag "Rate",class: "courses-button"
+.book-comment
+  h2.book-comment_title
+    | Đánh giá sản phẩm
+  = render @book.comments
+  = render 'comments/form'

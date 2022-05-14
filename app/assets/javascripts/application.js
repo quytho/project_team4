@@ -35,7 +35,10 @@ $(document).ready(function () {
       success: function() {
         $(other_button1).addClass('hidden');
         $(other_button).removeClass('hidden');
+        location.reload();  //Refresh page
       },
+    }).fail(function (msg) {
+      alert("Follow fail")
     });
   });
   //ajax unfollow
@@ -53,7 +56,10 @@ $(document).ready(function () {
       success: function() {
         $(other_button).addClass('hidden');
         $(other_button1).removeClass('hidden');
+        location.reload();  //Refresh page
       },
+    }).fail(function (msg) {
+      alert("Unfollow fail")
     });
   });
   

@@ -1,0 +1,119 @@
+.book-detail{
+  display: flex;
+  // justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #FFF7DF;
+  gap: 0 50px;
+  margin: 20px 0;
+  &_image{
+    width: 40%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px 0;
+    img{
+      width: 100%;
+      height: 85%;
+      object-fit: cover;
+    }
+  }
+  &_rate{
+    width: 150px;
+  }
+  &_star{
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
+    width: 20px;
+    height: 20px;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  &_info{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px 0;
+  }
+  &_header{
+    font-size: 20px;
+    color: #5C5C5C;
+    font-weight: 600; 
+  }
+  &_author, &_amount, &_price, &_publisher{
+    display: flex;
+
+    font-size: 18px;
+    font-weight: 500;
+    color: #5C5C5C;
+    // width: 100px;
+    p{
+      width: 150px;
+    }
+  }
+  &_button{
+    display: flex;
+    gap: 0 10px;
+  }
+}
+.book-comment{
+  
+  display: flex;
+  // justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  background-color: #FFF7DF;
+  gap: 20px 50px;
+  margin: 20px 0;
+  flex-direction: column;
+  .user-comment{
+
+    &_name{
+      text-transform: capitalize;
+    }
+    &_info{
+      display: flex;
+      gap: 0 20px;
+      // align-items: center;
+      font-size: 18px;
+      font-weight: 500;
+      color: black;
+    }
+    &_avatar{
+      width: 30px;
+      height: 30px;
+      img{
+        width: 100%;
+        border-radius: 50px;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    &_time{
+      // margin-left: 45px;
+      font-size: 16px;
+      font-weight: 500;
+      color: black;
+    }
+    &_nati{
+      display: flex;
+      gap: 10px 20px;
+      flex-direction: column;
+    }
+
+
+  }
+}
+.form-content{
+  display: flex;
+  gap: 0 20px;
+  align-items: center;
+}

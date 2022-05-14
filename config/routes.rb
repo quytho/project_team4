@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   resources :users
   resources :authors
-  resources :books
+  resources :books do
+    resources :comments
+  end
   resources :follows
   namespace :admin do
     resources :publishers

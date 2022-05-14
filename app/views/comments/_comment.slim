@@ -1,0 +1,13 @@
+.user-comment
+  .user-comment_info 
+    .user-comment_avatar
+      img src=" https://png.pngtree.com/png-clipart/20191122/original/pngtree-user-vector-icon-with-white-background-png-image_5162452.jpg"
+    .user-comment_nati
+      .user-comment_name
+        = comment.user.name
+      .user-comment_time
+        = comment.created_at
+      .user-comment_content
+        = comment.content
+      - if current_user.id == comment.user_id
+        = button_to "Destroy", [comment.book,comment], method: "delete"

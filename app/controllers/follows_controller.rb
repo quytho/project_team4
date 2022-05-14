@@ -2,7 +2,12 @@ class FollowsController < ApplicationController
   before_action :logged_in_user
   skip_before_action :verify_authenticity_token
   def create
-    @follow = Follow.create(follow_params)
+    @follow = Follow.new(follow_params)
+    if @follow.save
+      flash[:success] = 'Follow successfully'
+    else
+      flash[:warning] = 'Follow create failed'
+    end
   end
 
   def destroy

@@ -14,17 +14,4 @@
   .courses-type
     = star(book) > 3 ? "Top Rate" : "" 
   .courses-but
-    - id_follow = (book.follows.find_by(book_id: book.id, user_id: current_user.id))
-    - if id_follow.present?
-      - show_unfollow = ""
-      - show_follow = "hidden"
-    - else
-      - show_unfollow = "hidden"
-      - show_follow = ""
-    = button_tag "Follow",
-        class: "courses-button follow-book #{show_follow}", id: "follow-#{book.id}", 
-          data: {book_id: book.id, user_id: current_user.id} 
-    = button_tag "Unfollow",
-        class: "courses-button unfollow-book #{show_unfollow}", id: "unfollow-#{book.id}", 
-          data: {id:id_follow , book_id: book.id, user_id: current_user.id} 
     = link_to "Details", book_path(book.id), class: "courses-button"
