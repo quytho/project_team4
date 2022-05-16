@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Admin Controller
 class UsersController < ApplicationController
   def index; end
 

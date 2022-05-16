@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Borrow Requests Migration
 class CreateBorrowRequets < ActiveRecord::Migration[6.0]
   def change
     create_table :borrow_requets do |t|

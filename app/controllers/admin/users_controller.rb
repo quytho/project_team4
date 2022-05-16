@@ -1,4 +1,5 @@
 module Admin
+  # Admin-User Controller
   class UsersController < AdminController
     before_action :get_users, except: %i[index new create]
 
@@ -47,12 +48,20 @@ module Admin
                                    :password_confirmation, :is_admin)
     end
 
+    def bad_reader_name?(method_name, args)
+      method_name.start_with?('get_') && args.to_a.empty?
+    end
+
+    def bad_writer_name?(method_name, args)
+      method_name.start_with?('set_') && args.to_a.one?
+    end
+
     def get_users
       @user = User.find_by_id(params[:id])
       return if @user.present?
 
       flash[:warning] = 'That publisher could not be found'
       redirect_to admin_users_path
+      end
     end
-  end
 end

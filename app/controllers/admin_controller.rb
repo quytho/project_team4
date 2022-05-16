@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Admin Controller
 class AdminController < ApplicationController
   layout :dynamic_layout
 
