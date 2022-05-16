@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Publishers Migration
 class CreatePublishers < ActiveRecord::Migration[6.0]
   def change
     create_table :publishers do |t|
