@@ -10,24 +10,25 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree.
+
 $(document).ready(function () {
   $(document).on("click", ".edit_accept", function () {
-    var sta = $(this).data('status')
-    var bookId = $(this).data('book-id')
+    var sta = $(this).data("status");
+    var bookId = $(this).data("book-id");
     $.ajax({
       method: "patch",
-      url: "/admin/borrow_requets/"+ bookId ,
-      data: {status:sta},
+      url: "/admin/borrow_requets/" + bookId,
+      data: { status: sta },
     });
   });
   //ajax follow
   $(document).on("click", ".follow-book", function () {
-    var bookId = $(this).data('book-id')
-    var userId = $(this).data('user-id')
+    var bookId = $(this).data("book-id");
+    var userId = $(this).data("user-id");
     var id = "unfollow-" + bookId;
     var ids = "follow-" + bookId;
-    var other_button = (document).getElementById("unfollow-" + bookId)
-    var other_button1 = (document).getElementById("follow-" + bookId)
+    var other_button = document.getElementById("unfollow-" + bookId);
+    var other_button1 = document.getElementById("follow-" + bookId);
     $.ajax({
       method: "post",
       url: "/follows",
@@ -43,12 +44,12 @@ $(document).ready(function () {
   });
   //ajax unfollow
   $(document).on("click", ".unfollow-book", function () {
-    var follow = $(this).data('id')
-    var id_follow = follow.id
-    var bookId = $(this).data('book-id')
-    var userId = $(this).data('user-id')
-    var other_button = (document).getElementById("unfollow-" + bookId)
-    var other_button1 = (document).getElementById("follow-" + bookId)
+    var follow = $(this).data("id");
+    var id_follow = follow.id;
+    var bookId = $(this).data("book-id");
+    var userId = $(this).data("user-id");
+    var other_button = document.getElementById("unfollow-" + bookId);
+    var other_button1 = document.getElementById("follow-" + bookId);
     $.ajax({
       method: "delete",
       url: "/follows/" + id_follow,
@@ -62,10 +63,7 @@ $(document).ready(function () {
       alert("Unfollow fail")
     });
   });
-  
-
 });
-
 
 //display star
 const ratingStars = [...document.getElementsByClassName("rating__star")];
@@ -79,7 +77,7 @@ function executeRating(stars) {
     star.onclick = () => {
       i = stars.indexOf(star);
 
-      if (star.className===starClassInactive) {
+      if (star.className === starClassInactive) {
         for (i; i >= 0; --i) stars[i].className = starClassActive;
       } else {
         for (i; i < starsLength; ++i) stars[i].className = starClassInactive;
@@ -88,3 +86,22 @@ function executeRating(stars) {
   });
 }
 executeRating(ratingStars);
+
+// datetime borrow request
+
+var dateToday = new Date();
+$(function () {
+  $("#from").datepicker({
+    minDate: 0,
+    beforeShow: function () {
+      $(this).datepicker("option", "maxDate", $("#to").val());
+    },
+  });
+  $("#to").datepicker({
+    defaultDate: "+1w",
+    beforeShow: function () {
+      $(this).datepicker("option", "minDate", $("#from").val());
+      if ($("#from").val() === "") $(this).datepicker("option", "minDate", 0);
+    },
+  });
+});
