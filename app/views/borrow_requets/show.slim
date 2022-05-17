@@ -2,7 +2,7 @@
 .h1_title
   h1
     | Borrow Request
-= form_for(@borrow_requet) do |form|
+= form_for(@borrow_requet, html: { autocomplete: "off"}) do |form|
       .request-form
         .request-form-iteam
           .request-form-fieldname
@@ -18,12 +18,12 @@
           .request-form-name
             = form.label :borrow
           .request-form-fieldname
-            = form.text_field :borrow_date
+            = form.text_field :borrow_date, required: true, id:"from"
         .request-form-iteam
           .request-form-name
             = form.label :return
           .request-form-fieldname
-            = form.text_field :return_date
+            = form.text_field :return_date, required: true, id:"to"
         .request-form-iteam
           .request-submit
             = form.submit "Create"
