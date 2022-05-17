@@ -8,6 +8,8 @@
           .request-form-fieldname
             = form.hidden_field :user_id, :value => current_user.id
           .request-form-fieldname
+            = form.hidden_field :status, :value => 0
+          .request-form-fieldname
             = form.hidden_field :book_id, :value => @book.id
         .request-form-iteam
           .request-form-name
@@ -16,14 +18,9 @@
             = form.text_field :name, :value => @book.name
         .request-form-iteam
           .request-form-name
-            = form.label :borrow
+            = form.label :borrow_day
           .request-form-fieldname
-            = form.text_field :borrow_date
-        .request-form-iteam
-          .request-form-name
-            = form.label :return
-          .request-form-fieldname
-            = form.text_field :return_date
+            = form.text_field :borrow_date, id:"datePicker"
         .request-form-iteam
           .request-submit
             = form.submit "Create"

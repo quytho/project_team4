@@ -1,6 +1,6 @@
 module Admin
   class PublishersController < AdminController
-    before_action :get_publishers, except: %i[index new create]
+    before_action :find_publisher, except: %i[index new create]
 
     def index
       @publishers = Publisher.search(params)
@@ -17,12 +17,12 @@ module Admin
     end
 
     def create
-      @publisher = Publisher.new(user_params)
+      @publisher = Publisher.new(publisher_params)
       if @publisher.save
-        flash[:success] = 'Publisher successfully'
+        flash[:success] = "Publisher successfully"
         redirect_to admin_publishers_path
       else
-        flash[:warning] = 'Publisher create failed'
+        flash[:warning] = "Publisher create failed"
         render :new
       end
     end
@@ -30,36 +30,36 @@ module Admin
     def show; end
 
     def update
-      if @publisher.update(user_params)
-        flash[:success] = 'Publisher updated'
+      if @publisher.update(publisher_params)
+        flash[:success] = "Publisher updated"
         redirect_to admin_publishers_path
       else
-        flash[:warning] = 'Publisher update failed'
+        flash[:warning] = "Publisher update failed"
         render :show
       end
     end
 
     def destroy
       if @publisher.books.exists?
-        flash[:warning] = 'Delete failed'
+        flash[:warning] = "Delete failed"
       else
         @publisher&.destroy
-        flash[:success] = 'Delete successfully'
+        flash[:success] = "Delete successfully"
       end
       redirect_to admin_publishers_path
     end
 
     private
 
-    def user_params
+    def publisher_params
       params.require(:publisher).permit(:name)
     end
 
-    def get_publishers
+    def find_publisher
       @publisher = Publisher.find_by_id(params[:id])
       return if @publisher.present?
 
-      flash[:warning] = 'That publisher could not be found'
+      flash[:warning] = "That publisher could not be found"
       redirect_to admin_publishers_path
     end
   end

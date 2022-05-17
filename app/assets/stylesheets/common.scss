@@ -733,7 +733,7 @@ li.prev.previous_page {
     gap: 0 30px;
     position: absolute;
     top: 50%;
-    left: 20%;
+    left: 40%;
     visibility: hidden;
   }
   &-button {
@@ -745,6 +745,10 @@ li.prev.previous_page {
     color: #fff;
     text-transform: capitalize;
     border: none;
+  }
+  &-delete{
+    border-radius: 2px;
+    padding: 2px 5px;
   }
 }
 @media screen and (max-width: 1279px) {
@@ -805,4 +809,8 @@ li.prev.previous_page {
 }
 .display-btn{
   display: none;
+}
+.new-comment{
+  width: 850px;
+  padding: 5px 0px;
 }

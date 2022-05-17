@@ -4,9 +4,9 @@ class FollowsController < ApplicationController
   def create
     @follow = Follow.new(follow_params)
     if @follow.save
-      flash[:success] = 'Follow successfully'
+      flash[:success] = "Follow successfully"
     else
-      flash[:warning] = 'Follow create failed'
+      flash[:warning] = "Follow create failed"
     end
   end
 

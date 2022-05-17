@@ -20,24 +20,31 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
 
   scope :order_name, -> { order(is_admin: :DESC) }
-  scope :search_name, ->(name) { where('LOWER(name) LIKE ?', "%#{name}%") if name.present? }
+  scope :search_name, ->(name) { where("LOWER(name) LIKE ?", "%#{name}%") if name.present? }
   scope :search_role, ->(is_admin) { where(is_admin: is_admin) if is_admin.present? }
   scope :search, lambda { |params|
     search_name(params[:name])
     # .search_role(params[:is_admin])
   }
 
-  def self.digest(string)
-    cost = if ActiveModel::SecurePassword.min_cost
-             BCrypt::Engine::MIN_COST
-           else
-             BCrypt::Engine.cost
-           end
-    BCrypt::Password.create(string, cost: cost)
-  end
+  class << self
+    def digest(string)
+      cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
+      BCrypt::Password.create(string, cost: cost)
+    end
 
-  def self.new_token
-    SecureRandom.urlsafe_base64
+    def new_token
+      SecureRandom.urlsafe_base64
+    end
+
+    def to_xls(options = {})
+      CSV.generate(options) do |csv|
+        csv << column_names
+        all.each do |student|
+          csv << student.attributes.values_at(*column_names)
+        end
+      end
+    end
   end
 
   def remember
@@ -84,14 +91,5 @@ class User < ActiveRecord::Base
   def create_activation_digest
     self.activation_token = User.new_token
     self.activation_digest = User.digest(activation_token)
-  end
-
-  def self.to_xls(options = {})
-    CSV.generate(options) do |csv|
-      csv << column_names
-      all.each do |student|
-        csv << student.attributes.values_at(*column_names)
-      end
-    end
   end
 end

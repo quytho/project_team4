@@ -2,7 +2,7 @@ module BooksHelper
   def star(book)
     sum = book.rates.map(&:star).sum
     avg = book.rates.map(&:star).count
-    star = begin
+    begin
       sum / avg
     rescue StandardError
       0

@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  before_action :get_user, only: %i[edit update]
+  before_action :find_user, only: %i[edit update]
   before_action :valid_user, only: %i[edit update]
 
   def new; end
@@ -9,11 +9,11 @@ class PasswordResetsController < ApplicationController
     if @user
       @user.create_reset_digest
       @user.send_password_reset_email
-      flash[:info] = 'Email sent with password reset instructions'
+      flash[:info] = "Email sent with password reset instructions"
       redirect_to root_url
     else
-      flash.now[:danger] = 'Email address not found'
-      render 'new'
+      flash.now[:danger] = "Email address not found"
+      render "new"
     end
   end
 
@@ -22,13 +22,13 @@ class PasswordResetsController < ApplicationController
   def update
     if password_blank?
       flash.now[:danger] = "Password can't be blank"
-      render 'edit'
+      render "edit"
     elsif @user.update_attributes(user_params)
-      log_in @user
-      flash[:success] = 'Password has been reset.'
+      save_log_in @user
+      flash[:success] = "Password has been reset."
       redirect_to @user
     else
-      render 'edit'
+      render "edit"
     end
   end
 
@@ -42,8 +42,11 @@ class PasswordResetsController < ApplicationController
     params[:user][:password].blank?
   end
 
-  def get_user
+  def find_user
     @user = User.find_by(email: params[:email])
+    return if @user.present?
+
+    flash[:warning] = "That user could not be found"
   end
 
   def valid_user

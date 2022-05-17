@@ -1,6 +1,6 @@
 module Admin
   class BooksController < AdminController
-    before_action :get_books, except: %i[index new create]
+    before_action :find_book, except: %i[index new create]
 
     def new
       @book = Book.new
@@ -20,10 +20,10 @@ module Admin
 
     def destroy
       if @book.borrow_requets.exists?
-        flash[:warning] = 'Book delete failed'
+        flash[:warning] = "Book delete failed"
       else
         @book.destroy
-        flash[:success] = 'Delete successfully'
+        flash[:success] = "Delete successfully"
       end
       redirect_to admin_books_path
     end
@@ -32,10 +32,10 @@ module Admin
 
     def update
       if @book.update(book_params)
-        flash[:success] = 'Book updated'
+        flash[:success] = "Book updated"
         redirect_to admin_books_path
       else
-        flash[:warning] = 'Book updatedd failed'
+        flash[:warning] = "Book updatedd failed"
         render :edit
       end
     end
@@ -43,10 +43,10 @@ module Admin
     def create
       @book = Book.new(book_params)
       if @book.save
-        flash[:success] = 'Book create successfully'
+        flash[:success] = "Book create successfully"
         redirect_to admin_books_path
       else
-        flash[:warning] = 'Book create failed'
+        flash[:warning] = "Book create failed"
         render :new
       end
     end
@@ -58,11 +58,12 @@ module Admin
                                    publisher_attributes: [:name], author_attributes: [:name])
     end
 
-    def get_books
+    def find_book
       @book = Book.find_by_id(params[:id])
       return if @book.present?
 
-      flash[:warning] = 'That book could not be found'
+      flash[:warning] = "That book could not be found"
+      redirect_to admin_books_path
     end
   end
 end
