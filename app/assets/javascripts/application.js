@@ -32,18 +32,11 @@ $(document).ready(function () {
     $.ajax({
       method: "post",
       url: "/follows",
-<<<<<<< HEAD
       data: {user_id:userId, book_id:bookId},
       success: function() {
         $(other_button1).addClass('hidden');
         $(other_button).removeClass('hidden');
         location.reload();  //Refresh page
-=======
-      data: { user_id: userId, book_id: bookId },
-      success: function () {
-        $(other_button1).addClass("hidden");
-        $(other_button).removeClass("hidden");
->>>>>>> 406edc6 (Update borrow request)
       },
     }).fail(function (msg) {
       alert("Follow fail")
