@@ -1,6 +1,6 @@
 module Admin
   class UsersController < AdminController
-    before_action :get_users, except: %i[index new create]
+    before_action :find_user, except: %i[index new create]
 
     def index
       @users = User.search(params)
@@ -19,10 +19,10 @@ module Admin
     def create
       @user = User.new(user_params)
       if @user.save
-        flash[:success] = 'Create User successfully'
+        flash[:success] = "Create User successfully"
         redirect_to admin_users_path
       else
-        flash[:warning] = 'Create User failed'
+        flash[:warning] = "Create User failed"
         render :new
       end
     end
@@ -33,9 +33,9 @@ module Admin
 
     def update
       if @user.update(user_params)
-        flash[:success] = 'Updated user successfully'
+        flash[:success] = "Updated user successfully"
       else
-        flash[:warning] = 'Update user failed'
+        flash[:warning] = "Update user failed"
       end
       redirect_to admin_users_path
     end
@@ -47,11 +47,11 @@ module Admin
                                    :password_confirmation, :is_admin)
     end
 
-    def get_users
+    def find_user
       @user = User.find_by_id(params[:id])
       return if @user.present?
 
-      flash[:warning] = 'That publisher could not be found'
+      flash[:warning] = "That publisher could not be found"
       redirect_to admin_users_path
     end
   end

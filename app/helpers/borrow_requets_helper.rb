@@ -1,2 +1,0 @@
-module BorrowRequetsHelper
-end

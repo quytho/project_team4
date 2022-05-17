@@ -1,6 +1,6 @@
 module Admin
   class AuthorsController < AdminController
-    before_action :get_authors, except: %i[index new create]
+    before_action :find_author, except: %i[index new create]
 
     def index
       @authors = Author.search(params)
@@ -19,9 +19,10 @@ module Admin
     def create
       @author = Author.new(user_params)
       if @author.save
-        flash[:success] = 'Author successfully'
+        flash[:success] = "Author successfully"
         redirect_to admin_authors_path
       else
+        flash[:warning] = "Author create failed"
         render :new
       end
     end
@@ -30,9 +31,10 @@ module Admin
 
     def update
       if @author.update(user_params)
-        flash[:success] = 'Author updated'
+        flash[:success] = "Author updated"
         redirect_to admin_authors_path
       else
+        flash[:warning] = "Author update failed"
         render :new
       end
     end
@@ -40,22 +42,22 @@ module Admin
     def destroy
       if Book.where(author_id: params[:id]).empty?
         @author.destroy
-        flash[:success] = 'Delete successfully'
+        flash[:success] = "Delete successfully"
       else
-        flash[:danger] = 'Delete failed'
+        flash[:danger] = "Delete failed"
       end
       redirect_to admin_authors_path
     end
-   
+
     def user_params
       params.require(:author).permit(:name)
     end
 
-    def get_authors
+    def find_author
       @author = Author.find_by_id(params[:id])
       return if @author.present?
 
-      flash[:warning] = 'That author could not be found'
+      flash[:warning] = "That author could not be found"
       redirect_to admin_authors_path
     end
   end

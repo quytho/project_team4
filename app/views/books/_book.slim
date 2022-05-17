@@ -11,7 +11,6 @@
     .courses-star
       - (1..star(book)).each do |index|
         = image_tag("star.png")
-    = link_to "Borrow book", borrow_requet_path(book), class: "courses-button"
   .courses-type
     = star(book) > 3 ? "Top Rate" : "" 
   .courses-but

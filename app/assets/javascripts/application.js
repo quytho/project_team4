@@ -11,15 +11,52 @@
 //= require turbolinks
 //= require_tree.
 $(document).ready(function () {
+
+  var date = new Date();
+    
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+  
+  if (month < 10) month = "0" + month;
+  if (day < 10) day = "0" + day;
+  
+  var today = year + "-" + month + "-" + day;       
+  
+  $(document).on("click", "#datePicker", function () {
+    document.getElementById("datePicker").value = today;
+  });
+
+  $(document).on("click", ".form-check-input", function () {
+    $(this).val($(this).is(":checked") ? 1 : 0);
+    value = document.querySelector('.form-check-input').checked;
+    if(value){
+      document.getElementById("datePickerReturn1").value = today;
+    }
+    else{
+      document.getElementById("datePickerReturn1").value = "";
+    }
+  });
+
+
+  // set value checkbox
+  $(".form-check-input").change(function(){
+    $(this).val($(this).is(":checked") ? 1 : 0);
+  });
+
+  // accpet borrow request book
   $(document).on("click", ".edit_accept", function () {
     var sta = $(this).data('status')
-    var bookId = $(this).data('book-id')
+    var borrowId = $(this).data('book-id')
     $.ajax({
-      method: "patch",
-      url: "/admin/borrow_requets/"+ bookId ,
-      data: {status:sta},
+      method: "put",
+      url: "/admin/borrow_requets/"+ borrowId ,
+      data: {status:sta,update_status: "status"},
+    }).fail(function (msg) {
+      alert("Accept fail")
     });
   });
+
   //ajax follow
   $(document).on("click", ".follow-book", function () {
     var bookId = $(this).data('book-id')
@@ -41,6 +78,7 @@ $(document).ready(function () {
       alert("Follow fail")
     });
   });
+
   //ajax unfollow
   $(document).on("click", ".unfollow-book", function () {
     var follow = $(this).data('id')
@@ -60,16 +98,12 @@ $(document).ready(function () {
       },
     }).fail(function (msg) {
       alert("Unfollow fail")
-    });
+    });đo
   });
-  
-
 });
-
 
 //display star
 const ratingStars = [...document.getElementsByClassName("rating__star")];
-
 function executeRating(stars) {
   const starClassActive = "rating__star fas fa-star";
   const starClassInactive = "rating__star far fa-star";

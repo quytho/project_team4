@@ -25,7 +25,7 @@
         | Price :
       = @book.price
     .book-detail_button
-      = button_tag "Borrow Request",class: "courses-button"
+      = link_to "Borrow book", borrow_requet_path(@book), class: "courses-button borrow"
       - id_follow = (@book.follows.find_by(book_id: @book.id, user_id: current_user.id))
       - if id_follow.present?
         - show_unfollow = ""
