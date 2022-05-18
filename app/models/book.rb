@@ -23,8 +23,8 @@ class Book < ActiveRecord::Base
   def self.to_xls(options = {})
     CSV.generate(options) do |csv|
       csv << column_names
-      all.each do |student|
-        csv << student.attributes.values_at(*column_names)
+      all.each do |book|
+        csv << book.attributes.values_at(*column_names)
       end
     end
   end
