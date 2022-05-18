@@ -33,12 +33,25 @@
       - else
         - show_unfollow = "hidden"
         - show_follow = ""
+      - id_like = (@book.likes.find_by(book_id: @book.id, user_id: current_user.id))
+      - if id_like.present?
+        - show_unlike = ""
+        - show_like = "hidden"
+      - else
+        - show_unlike = "hidden"
+        - show_like = ""
       = button_tag "Follow",
                               class: "courses-button follow-book #{show_follow}", id: "follow-#{@book.id}", 
                               data: {book_id: @book.id, user_id: current_user.id} 
       = button_tag "Unfollow",
                               class: "courses-button unfollow-book #{show_unfollow}", id: "unfollow-#{@book.id}", 
                               data: {id:id_follow , book_id: @book.id, user_id: current_user.id}
+      = button_tag "Like",
+                              class: "courses-button like-book #{show_like}", id: "like-#{@book.id}", 
+                              data: {book_id: @book.id, user_id: current_user.id} 
+      = button_tag "Unlike",
+                              class: "courses-button unlike-book #{show_unlike}", id: "unlike-#{@book.id}", 
+                              data: {id:id_like , book_id: @book.id, user_id: current_user.id}
 .book-comment
   h2.book-comment_title
     | Đánh giá sản phẩm

@@ -100,7 +100,51 @@ $(document).ready(function () {
       alert("Unfollow fail")
     });đo
   });
+
+  //ajax like
+  $(document).on("click", ".like-book", function () {
+    var bookId = $(this).data('book-id')
+    var userId = $(this).data('user-id')
+    var other_button = (document).getElementById("unlike-" + bookId)
+    var other_button1 = (document).getElementById("like-" + bookId)
+    $.ajax({
+      method: "post",
+      url: "/likes",
+      data: {user_id:userId, book_id:bookId},
+      success: function() {
+        $(other_button1).addClass('hidden');
+        $(other_button).removeClass('hidden');
+        location.reload();  //Refresh page
+      },
+    }).fail(function (msg) {
+      alert("unlike fail")
+    });
+  });
+
+  //ajax unlike
+  $(document).on("click", ".unlike-book", function () {
+    var like = $(this).data('id')
+    var id_like = like.id
+    var bookId = $(this).data('book-id')
+    var userId = $(this).data('user-id')
+    var other_button = (document).getElementById("unlike-" + bookId)
+    var other_button1 = (document).getElementById("like-" + bookId)
+    $.ajax({
+      method: "delete",
+      url: "/likes/" + id_like,
+      data: {id:id_like},
+      success: function() {
+        $(other_button).addClass('hidden');
+        $(other_button1).removeClass('hidden');
+        location.reload();  //Refresh page
+      },
+    }).fail(function (msg) {
+      alert("Unlike fail")
+    });
+  });
 });
+
+
 
 //display star
 const ratingStars = [...document.getElementsByClassName("rating__star")];

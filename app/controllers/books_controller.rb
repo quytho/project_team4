@@ -7,6 +7,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.includes(:author, :publisher, :follows).find(params[:id])
+    @book = Book.includes(:author, :publisher, :follows, :likes).find(params[:id])
   end
 end
