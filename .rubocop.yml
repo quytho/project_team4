@@ -2397,7 +2397,7 @@ Metrics/BlockLength:
   VersionAdded: '0.44'
   VersionChanged: '1.5'
   CountComments: false  # count full line comments?
-  Max: 25
+  Max: 110
   CountAsOne: []
   ExcludedMethods: [] # deprecated, retained for backwards compatibility
   IgnoredMethods:

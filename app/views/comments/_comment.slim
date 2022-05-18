@@ -10,4 +10,4 @@
       .user-comment_content
         = comment.content
       - if current_user.id == comment.user_id
-        = button_to "Destroy", [comment.book,comment], method: "delete"
+        = button_to "Destroy", [comment.book,comment], method: "delete", class: "courses-button courses-delete"

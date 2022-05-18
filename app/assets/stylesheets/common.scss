@@ -746,6 +746,10 @@ li.prev.previous_page {
     text-transform: capitalize;
     border: none;
   }
+  &-delete{
+    border-radius: 2px;
+    padding: 2px 5px;
+  }
 }
 @media screen and (max-width: 1279px) {
   .courses {
@@ -805,4 +809,8 @@ li.prev.previous_page {
 }
 .display-btn{
   display: none;
+}
+.new-comment{
+  width: 850px;
+  padding: 5px 0px;
 }

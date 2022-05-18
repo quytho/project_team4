@@ -2,6 +2,6 @@
   = form_with model: [ @book, @book.comments.build ] do |form|
     .form-content
       / = form.label :New_comments
-      = form.text_area :content
+      = form.text_field :content, class:"new-comment"
       = form.hidden_field :user_id, value: current_user.id
-      = form.submit "comment", class: ""
+      = form.submit "comment", class: "courses-button"
